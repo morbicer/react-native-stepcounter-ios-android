@@ -20,7 +20,6 @@ class StepCounterRecord(reactContext: ReactApplicationContext) : SensorEventList
   private var lastUpdate:Long = 0
   private var i = 0
   private var delay:Int = 0
-  private var initSteps: Double? = null
 
   private var reactContext:ReactContext = reactContext
 
@@ -33,7 +32,6 @@ class StepCounterRecord(reactContext: ReactApplicationContext) : SensorEventList
 
   fun stop() {
     mSensorManager.unregisterListener(this)
-    initSteps = null
   }
 
   private fun sendEvent(eventName:String, params:WritableMap?) {
@@ -58,17 +56,13 @@ class StepCounterRecord(reactContext: ReactApplicationContext) : SensorEventList
       if ((curTime - lastUpdate) > delay)
       {
         i = 0
-        if (initSteps === null) {
-          initSteps = sensorEvent.values[0].toDouble()
-        } else {
-          val curSteps = sensorEvent.values[0].toDouble().minus(initSteps!!)
+        val curSteps = sensorEvent.values[0].toDouble()
           if (curSteps != null) {
             map.putDouble("steps", curSteps)
           }
 
           sendEvent("StepCounter", map)
           lastUpdate = curTime
-        }
       }
     }
   }
