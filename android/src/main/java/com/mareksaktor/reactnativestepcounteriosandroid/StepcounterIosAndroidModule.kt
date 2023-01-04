@@ -1,4 +1,4 @@
-package com.reactnativestepcounteriosandroid
+package com.mareksaktor.reactnativestepcounteriosandroid
 
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule

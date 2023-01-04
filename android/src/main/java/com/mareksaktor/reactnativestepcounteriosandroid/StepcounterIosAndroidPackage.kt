@@ -1,4 +1,4 @@
-package com.reactnativestepcounteriosandroid
+package com.mareksaktor.reactnativestepcounteriosandroid
 
 import java.util.Arrays
 import java.util.Collections

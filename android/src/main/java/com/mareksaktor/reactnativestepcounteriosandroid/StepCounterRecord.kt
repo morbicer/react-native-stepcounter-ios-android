@@ -1,4 +1,4 @@
-package com.reactnativestepcounteriosandroid
+package com.mareksaktor.reactnativestepcounteriosandroid
 
 import android.hardware.Sensor
 import android.hardware.SensorEvent
