@@ -5,6 +5,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.util.Log
+import android.os.SystemClock
 
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.ReactContext
@@ -57,8 +58,10 @@ class StepCounterRecord(reactContext: ReactApplicationContext) : SensorEventList
       {
         i = 0
         val curSteps = sensorEvent.values[0].toDouble()
+        val bootTime = curTime - SystemClock.elapsedRealtime()
           if (curSteps != null) {
             map.putDouble("steps", curSteps)
+            map.putDouble("bootTimeMs", bootTime.toDouble())
           }
 
           sendEvent("StepCounter", map)
