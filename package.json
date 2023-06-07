@@ -1,6 +1,6 @@
 {
   "name": "react-native-stepcounter-ios-android",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "react native pedometer for android and ios",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
