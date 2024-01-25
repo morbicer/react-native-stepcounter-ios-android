@@ -1,4 +1,5 @@
 import CoreMotion
+import Foundation
 
 @objc(StepcounterIosAndroid)
 class StepcounterIosAndroid: RCTEventEmitter {
@@ -26,7 +27,8 @@ class StepcounterIosAndroid: RCTEventEmitter {
 
   @objc
   func startStepCounter() {
-    self.pedometer.startUpdates(from: Date()) { (data, error) in
+    let startDate = Calendar.current.startOfDay(for: Date())
+    self.pedometer.startUpdates(from: startDate) { (data, error) in
       guard let pedometerData = data, error == nil else {
         print("There was an error getting the data: \(String(describing: error))")
         return
@@ -36,7 +38,7 @@ class StepcounterIosAndroid: RCTEventEmitter {
       DispatchQueue.main.async {
         if self.numberOfSteps != pedDataSteps {
         self.numberOfSteps = pedDataSteps
-            self.sendEvent(withName: "StepCounter", body: ["steps": self.numberOfSteps])
+            self.sendEvent(withName: "StepCounter", body: ["steps": self.numberOfSteps, "bootTimeMs": Int(startDate.timeIntervalSince1970 * 1000)])
         }
       }
     }
